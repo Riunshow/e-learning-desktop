@@ -51,7 +51,7 @@ export default {
 			background: #fff;
 			border-radius: .4rem;
 			box-shadow: 0.3rem 0.3rem 1rem;
-			top: 25%;
+			top: 20%;
 			margin-left: auto;
 			margin-right: auto;
 			position: relative;
@@ -60,12 +60,13 @@ export default {
 			min-height: 400px;
 			img {
 				margin-top: 10px;
-				height: 100px;
-				width: 400px;
+				height: 200px;
+				width: 200px;
+				margin-bottom: -50px;
 			}
 			.el-input {
 				width: 300px;
-				margin-top: 20px;
+				// margin-top: 20px;
 			}
 			.el-button {
 				margin-top: 30px;

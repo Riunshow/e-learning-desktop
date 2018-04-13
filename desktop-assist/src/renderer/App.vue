@@ -12,8 +12,14 @@
 
 <style>
   /* CSS */
-  html,body,#app {
+  html,
+  body,
+  #app {
     height: 100%;
-    width: 100%; 
+    width: 100%;
+    margin: 0;
+  }
+  button {
+    -webkit-app-region: no-drag;
   }
 </style>

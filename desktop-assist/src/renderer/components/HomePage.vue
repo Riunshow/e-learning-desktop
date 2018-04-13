@@ -1,15 +1,17 @@
 <template>
 	<div id="homepage">
 		<nav-header></nav-header>
-		<router-link to="/" style="top: 50px;">login</router-link>
+		<options-area v-cloak></options-area>
 	</div>
 </template>
 
 <script>
 	import NavHeader from './common/Header'
+	import OptionsArea from './OptionsArea'
 	export default {
 		components: {
-			NavHeader
+			NavHeader,
+			OptionsArea,
 		},
 		data() {
 			return {};
@@ -21,5 +23,8 @@
 	#homepage {
 		height: 100%;
 		width: 100%;
+	}
+	[v-cloak] {
+		display: none !important;
 	}
 </style>
