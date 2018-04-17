@@ -50,7 +50,7 @@
 				</el-dialog>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary">立即创建</el-button>
+				<el-button type="primary" @click="publish">立即创建</el-button>
 				<el-button>取消</el-button>
 			</el-form-item>
 		</el-form>
@@ -96,7 +96,19 @@
 		},
 		created() {},
 		watch: {},
-		methods: {}
+		methods: {
+			publish() {
+				//    /live/:roomid/startquiz
+				//  num: 1, time: 10 
+				let roomId = ''
+				this.$axios.post(`http://172.20.171.122:7001/live/${sessionStorage.roomID}/startQuiz`, {
+					num: 1,
+					time: 10,
+				}).then(results => {
+					console.log(results.data);
+				})
+			}
+		}
 	}
 </script>
 

@@ -8,28 +8,50 @@
 						<el-input v-model="account" placeholder="请输入用户名"></el-input>
 						<el-input v-model="passwd" placeholder="请输入密码"></el-input>
 					</el-row>
-					<el-button type="primary" @click="redirect">登录</el-button>
+					<el-button type="primary" @click="login">登录</el-button>
 				</div>
-				
 			</el-main>
 		</el-container>
 	</div>
 </template>
 
 <script>
-export default {
-  data () {
-	return {
-		account: '',
-		passwd: '',
-	};
-  },
-  methods: {
-	  redirect() {
-		  this.$router.push({ path: '/homepage'})
-	  }
-  }
-}
+	export default {
+		data() {
+			return {
+				account: '',
+				passwd: '',
+			};
+		},
+		methods: {
+			// login() {
+			// 	sessionStorage.hasRoom = 0;
+
+			// 	this.$router.push({
+			// 		path: '/homepage'
+			// 	})
+			// },
+			
+			login() {
+				this.$axios.post('http://172.20.171.122:7001/admin/login', {
+					username: 'zbt',
+					password: '123123',
+				}).then(results => {
+					console.log(results.data);
+					sessionStorage.userStatus = true
+					sessionStorage.hasRoom = results.data.status
+					sessionStorage.roomID = results.data.roomID
+					
+					this.$router.push({
+						path: '/homepage'
+					})
+				})
+			}
+			
+
+
+		}
+	}
 </script>
 
 <style lang="scss" scoped>
@@ -41,13 +63,12 @@ export default {
 			width: 100%;
 		}
 	}
-
 	.el-main {
-		background-color: rgba(39,65,82,.8);
+		background-color: rgba(39, 65, 82, .8);
 		color: #333;
 		text-align: center;
 		line-height: 60px;
-		.loginModel{
+		.loginModel {
 			background: #fff;
 			border-radius: .4rem;
 			box-shadow: 0.3rem 0.3rem 1rem;
@@ -65,13 +86,11 @@ export default {
 				margin-bottom: -50px;
 			}
 			.el-input {
-				width: 300px;
-				// margin-top: 20px;
+				width: 300px; // margin-top: 20px;
 			}
 			.el-button {
 				margin-top: 30px;
 			}
 		}
 	}
-  
 </style>

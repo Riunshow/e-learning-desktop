@@ -1,6 +1,6 @@
 <template>
-  <div>
-		<el-form ref="form" :model="form" label-width="80px"  >
+	<div>
+		<el-form ref="form" :model="form" label-width="80px">
 			<el-form-item label="讨论名称">
 				<el-input v-model="form.name"></el-input>
 			</el-form-item>
@@ -27,16 +27,12 @@
 			</el-form-item>
 			<div>
 				<el-form-item label="讨论介绍">
-          <el-input
-            type="textarea"
-            :autosize="{ minRows: 2, maxRows: 6}"
-            placeholder="请输入内容"
-            v-model="input">
-          </el-input>
+					<el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入内容" v-model="input">
+					</el-input>
 				</el-form-item>
 			</div>
 			<el-form-item>
-				<el-button type="primary">立即创建</el-button>
+				<el-button type="primary" @click="onSubmit">立即创建</el-button>
 				<el-button>取消</el-button>
 			</el-form-item>
 		</el-form>
@@ -44,29 +40,41 @@
 </template>
 
 <script>
-   export default {
-    data() {
-      return {
+	export default {
+		data() {
+			return {
 				input: '',
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery1: false,
-          delivery2: false,
-          type: [],
-          resource: '',
-          desc: ''
-        }
-      }
-    },
-    methods: {
-      onSubmit() {
-        console.log('submit!');
-      }
-    }
-  }
+				roomid: '',
+				form: {
+					name: '',
+					region: '',
+					date1: '',
+					date2: '',
+					delivery1: false,
+					delivery2: false,
+					type: [],
+					resource: '',
+					desc: ''
+				}
+			}
+		},
+		methods: {
+			onSubmit() {
+				// /live/:roomid/startdiscuss
+				// subject: '', time: 10
+				// console.log(sessionStorage.roomID);
+				
+				this.$axios.post(`http://172.20.171.122:7001/live/${sessionStorage.roomID}/startDiscuss`, {
+					subject: this.form.name,
+					time: 10
+				}).then(results => {
+					console.log(results.data);
+					this.form.name = ''
+				})
+			},
+			
+		}
+	}
 </script>
 
 <style lang="css" scoped>

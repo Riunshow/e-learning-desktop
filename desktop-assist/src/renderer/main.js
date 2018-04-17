@@ -8,11 +8,22 @@ import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import VueCookie from 'vue-cookie'
+// require('electron-cookies')
+
+Vue.prototype.$axios = axios
+
+// import VueElectronStorage from 'vue-electron-storage'
+
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
+// Vue.use(VueElectronStorage)
+Vue.use(VueCookie);
+
+Vue.http.options.xhr = { withCredentials: true }
 
 /* eslint-disable no-new */
 new Vue({

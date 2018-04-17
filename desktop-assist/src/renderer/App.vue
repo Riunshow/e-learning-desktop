@@ -6,7 +6,15 @@
 
 <script>
   export default {
-    name: 'desktop-assist'
+    name: 'desktop-assist',
+    created () {
+      this.setIsLive()
+    },
+    methods: {
+      setIsLive() {
+        localStorage.setItem('isLive',false)
+      }
+    }
   }
 </script>
 
