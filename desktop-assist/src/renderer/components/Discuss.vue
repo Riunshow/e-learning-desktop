@@ -64,7 +64,7 @@
 				// subject: '', time: 10
 				// console.log(sessionStorage.roomID);
 				
-				this.$axios.post(`http://172.20.171.122:7001/live/${sessionStorage.roomID}/startDiscuss`, {
+				this.$axios.post(`${this.$serverIP}/live/${sessionStorage.roomID}/startDiscuss`, {
 					subject: this.form.name,
 					time: 10
 				}).then(results => {

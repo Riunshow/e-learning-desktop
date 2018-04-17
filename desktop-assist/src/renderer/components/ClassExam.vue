@@ -101,7 +101,7 @@
 				//    /live/:roomid/startquiz
 				//  num: 1, time: 10 
 				let roomId = ''
-				this.$axios.post(`http://172.20.171.122:7001/live/${sessionStorage.roomID}/startQuiz`, {
+				this.$axios.post(`${this.$serverIP}/live/${sessionStorage.roomID}/startQuiz`, {
 					num: 1,
 					time: 10,
 				}).then(results => {

@@ -33,7 +33,7 @@
 			// },
 			
 			login() {
-				this.$axios.post('http://172.20.171.122:7001/admin/login', {
+				this.$axios.post(this.$serverIP + '/admin/login', {
 					username: 'zbt',
 					password: '123123',
 				}).then(results => {

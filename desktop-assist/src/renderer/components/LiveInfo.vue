@@ -3,7 +3,7 @@
 		<el-container>
 			<el-header>
 				<h1>地址: </h1>
-				<p>https://www.baidu.com</p>
+				<p>{{room}}</p>
 			</el-header>
 			<el-header>
 				<h1>加密字符串: </h1>
@@ -22,8 +22,17 @@
 		data() {
 			return {
 				liveAddress: '',
-				title: ''
+				title: '',
+				room:'',
 			};
+		},
+		created () {
+			this.getRoom()	
+		},
+		methods: {
+			getRoom() {
+				this.room = `http://127.0.0.1:8081/#/basic/live/${sessionStorage.roomID}`
+			}
 		}
 	}
 </script>
