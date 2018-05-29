@@ -104,7 +104,7 @@ router.beforeEach((to, from, next) => {
                 path: '/homepage'
             })
         }
-        if (sessionStorage.hasRoom == 1) {
+        if (sessionStorage.hasRoom == true) {
             console.log('success')
             if (to.fullPath == '/homepage/wantlive') {
                 next({

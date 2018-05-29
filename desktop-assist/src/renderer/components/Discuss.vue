@@ -32,7 +32,7 @@
 				</el-form-item>
 			</div>
 			<el-form-item>
-				<el-button type="primary" @click="onSubmit">立即创建</el-button>
+				<el-button type="primary" @click="postDiscuss">立即创建</el-button>
 				<el-button>取消</el-button>
 			</el-form-item>
 		</el-form>
@@ -59,20 +59,29 @@
 			}
 		},
 		methods: {
-			onSubmit() {
+			postDiscuss() {
 				// /live/:roomid/startdiscuss
 				// subject: '', time: 10
 				// console.log(sessionStorage.roomID);
-				
 				this.$axios.post(`${this.$serverIP}/live/${sessionStorage.roomID}/startDiscuss`, {
 					subject: this.form.name,
 					time: 10
 				}).then(results => {
 					console.log(results.data);
 					this.form.name = ''
+					this.$notify({
+						title: '发布讨论主题成功',
+						message: results.data,
+						type: 'success'
+					});
+				}).catch((err) => {
+					console.log(err)
+					this.$notify.error({
+						title: '错误',
+						message: '这是一条错误的提示消息'
+					});
 				})
 			},
-			
 		}
 	}
 </script>

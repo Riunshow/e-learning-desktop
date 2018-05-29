@@ -58,7 +58,11 @@
 		},
 		methods: {
 			getDiscussData() {
-				
+				const _this = this
+				this.$axios.get('/api/').then((results) => {
+					console.log(results.data);
+					_this.contents = results.data
+				})
 			}
 		}
 	}

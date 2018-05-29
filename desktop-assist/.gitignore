@@ -8,3 +8,6 @@ npm-debug.log
 npm-debug.log.*
 thumbs.db
 !.gitkeep
+file/*
+desktop-assist-win32-x64/*
+desktop-assist-linux-x64/*

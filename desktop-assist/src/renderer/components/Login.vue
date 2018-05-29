@@ -31,21 +31,30 @@
 			// 		path: '/homepage'
 			// 	})
 			// },
-			
+			// sansrom@foxmail.com
 			login() {
-				this.$axios.post(this.$serverIP + '/admin/login', {
-					username: 'zbt',
-					password: '123123',
+				const _this = this
+				this.$axios.post(this.$serverIP + '/api/admin/login', {
+					username: _this.account,
+					password: _this.passwd,
 				}).then(results => {
-					console.log(results.data);
+					console.log(results.data)
 					sessionStorage.userStatus = true
-					sessionStorage.hasRoom = results.data.status
-					sessionStorage.roomID = results.data.roomID
+
+					if (results.data.data.user.roomID == null) {
+						sessionStorage.hasRoom = false
+					}else {					
+						sessionStorage.hasRoom = true
+						sessionStorage.roomID = results.data.data.user.roomID
+					}
+					
 					
 					this.$router.push({
 						path: '/homepage'
 					})
 				})
+
+
 			}
 			
 

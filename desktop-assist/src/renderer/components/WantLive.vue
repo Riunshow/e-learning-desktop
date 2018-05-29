@@ -9,7 +9,7 @@
 				<el-input v-model="form.roomID"></el-input>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary" @click="onSubmit">立即申请</el-button>
+				<el-button type="primary" @click="postApplicationRoom">立即申请</el-button>
 				<el-button>取消</el-button>
 			</el-form-item>
 		</el-form>
@@ -27,10 +27,9 @@
 			}
 		},
 		methods: {
-			onSubmit() {
+			postApplicationRoom() {
 				// live/application
 				// roomid token
-
 				const _this = this
 				this.$axios.post('http://172.20.171.122:7001/live/application', {
 					username: 'zbt',
@@ -39,10 +38,20 @@
 				}).then(results => {
 					sessionStorage.roomID = _this.form.roomID
 					sessionStorage.hasRoom = "1"
+					this.$notify({
+						title: '成功',
+						message: '这是一条成功的提示消息',
+						type: 'success'
+					});
 					location.reload()
+				}).catch((err) => {
+					console.log(err)
+					this.$notify.error({
+						title: '错误',
+						message: '这是一条错误的提示消息'
+					});
 				})
 			},
-
 			// onSubmit() {
 			// 	sessionStorage.hasRoom = 1
 			// 	console.log(sessionStorage)

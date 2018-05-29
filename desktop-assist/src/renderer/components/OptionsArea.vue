@@ -84,12 +84,11 @@
 					route: '/homepage/wantlive',
 					name: '申请直播',
 				}
-				console.log(sessionStorage.hasRoom);
 				
-				if (sessionStorage.hasRoom == '0') {
-					this.menus[2].children.push(wrongLive)
-				} else {
+				if (sessionStorage.hasRoom == "true") {
 					this.menus[2].children.push(rightLive)
+				} else {
+					this.menus[2].children.push(wrongLive)
 				}
 			},
 			getRoute() {

@@ -30,7 +30,7 @@
 					</el-upload>
 				</el-form-item>
 			</div>
-			<el-form-item label="选择试题">
+			<el-form-item label="智能组卷">
 				<el-button type="text" @click="dialogTableVisible = true">点击选择</el-button>
 				<el-dialog title="库中试题" :visible.sync="dialogTableVisible">
 					<el-dialog width="50%" title="hbase 测试题" :visible.sync="innerVisible" append-to-body>
@@ -41,16 +41,16 @@
 						<el-table-column property="category" label="分类" width="200"></el-table-column>
 						<el-table-column fixed="right" label="操作">
 							<template scope="scope">
-								<el-button @click="innerVisible = true" type="text">预览</el-button>
-								<el-button @click="dialogTableVisible = false" type="text">选择</el-button>
-							</template>
+											<el-button @click="innerVisible = true" type="text">预览</el-button>
+											<el-button @click="dialogTableVisible = false" type="text">选择</el-button>
+</template>
 						</el-table-column>
 					</el-table>
 					
 				</el-dialog>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary" @click="publish">立即创建</el-button>
+				<el-button type="primary" @click="postQuiz">立即创建</el-button>
 				<el-button>取消</el-button>
 			</el-form-item>
 		</el-form>
@@ -59,7 +59,6 @@
 
 <script>
 	import ExamPaper from './common/ExamPaper'
-
 	export default {
 		components: {
 			ExamPaper
@@ -85,27 +84,82 @@
 				}, {
 					name: 'java 测试',
 					category: 'java',
-				},{
+				}, {
 					name: 'c++ 测试',
 					category: 'c++',
-				},{
+				}, {
 					name: '数据结构 测试',
 					category: '数据结构',
-				},],
+				}, ],
 			}
 		},
 		created() {},
 		watch: {},
 		methods: {
-			publish() {
+			postQuiz() {
 				//    /live/:roomid/startquiz
 				//  num: 1, time: 10 
-				let roomId = ''
+				const quiz = [{
+						title: 'zpy 是不是猪',
+						modelname: 'radio1',
+						selects: [{
+							answer: 'linux'
+						}, {
+							answer: 'windows'
+						}]
+					},
+					{
+						title: 'Hbase 如何卸载',
+						modelname: 'radio2',
+						selects: [{
+							answer: 'linux'
+						}, {
+							answer: 'windows'
+						}]
+					}, {
+						title: 'Hbase 如何卸载',
+						modelname: 'radio2',
+						selects: [{
+							answer: 'linux'
+						}, {
+							answer: 'windows'
+						}]
+					}, {
+						title: 'Hbase 如何卸载',
+						modelname: 'radio2',
+						selects: [{
+							answer: 'linux'
+						}, {
+							answer: 'windows'
+						}]
+					}, {
+						title: 'Hbase 如何卸载',
+						modelname: 'radio2',
+						selects: [{
+							answer: 'linux'
+						}, {
+							answer: 'windows'
+						}]
+					},
+				]
+				console.log(quiz);
 				this.$axios.post(`${this.$serverIP}/live/${sessionStorage.roomID}/startQuiz`, {
 					num: 1,
 					time: 10,
+					data: quiz,
 				}).then(results => {
 					console.log(results.data);
+					this.$notify({
+						title: '成功',
+						message: '这是一条成功的提示消息',
+						type: 'success'
+					});
+				}).catch((err) => {
+					console.log(err);
+					this.$notify.error({
+						title: '错误',
+						message: '这是一条错误的提示消息'
+					});
 				})
 			}
 		}

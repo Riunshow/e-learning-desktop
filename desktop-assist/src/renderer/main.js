@@ -13,7 +13,9 @@ import VueCookie from 'vue-cookie'
 
 Vue.prototype.$axios = axios
 
-Vue.prototype.$serverIP = 'http://172.20.171.122:7001'
+// 'http://172.20.153.144:7001'
+
+Vue.prototype.$serverIP = 'http://172.20.153.144:7001'
 
 // import VueElectronStorage from 'vue-electron-storage'
 
